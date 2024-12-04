@@ -1,0 +1,14 @@
+[
+  {
+    "coordinates": "41.2995° N, 69.2401° E",
+    "optimizedCommands": "Move forward 5km",
+    "commands": "Move 5km North",
+    "date": "2024-11-29"
+  },
+  {
+    "coordinates": "40.7128° N, 74.0060° W",
+    "optimizedCommands": "Move left 3km",
+    "commands": "Move 3km West",
+    "date": "2024-11-28"
+  }
+]
