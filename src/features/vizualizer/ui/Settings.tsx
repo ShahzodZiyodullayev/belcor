@@ -42,7 +42,7 @@ const Settings: React.FC<SettingsProps> = ({
     getValues,
   } = useForm();
 
-  const onSubmit = e => e.stopPropagation();
+  const onSubmit = (e: any) => e.stopPropagation();
 
   return (
     <Stack
