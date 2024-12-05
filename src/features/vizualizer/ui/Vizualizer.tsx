@@ -81,11 +81,13 @@ const Visualizer: React.FC = () => {
           enqueueSnackbar("The sample was not taken with the manipulator!", { variant: "error" });
         }
 
+        console.log(samplePosition, currentPosition);
+
         addData({
-          optimizedCommands: JSON.stringify(formatCommands(commands)),
-          date: JSON.stringify(formatDate(new Date(), "DD/MM/YYYY - HH:mm")),
-          coordinates: JSON.stringify(currentPosition),
-          commands: JSON.stringify(commands),
+          optimizedCommands: `${formatCommands(commands)}T${formatCommands(targetCommands)}G`,
+          date: formatDate(new Date(), "DD/MM/YYYY - HH:mm"),
+          coordinates: `x:${samplePosition?.x}, y:${samplePosition?.y} - x:${currentPosition.x}, y:${currentPosition.y}`,
+          commands: `${commands}T${targetCommands}G`,
         });
 
         setIsStart(false);

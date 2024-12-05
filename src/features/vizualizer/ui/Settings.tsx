@@ -1,8 +1,18 @@
-import { Button, Slider, Stack, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  List,
+  ListItemText,
+  Slider,
+  Stack,
+  TextField,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { formatCommands } from "@/shared/helpers";
 import CustomButtonGroup from "@/shared/ui/button-group/ui/ButtonGroup.tsx";
 import { useForm } from "react-hook-form";
 import { Dispatch, SetStateAction, useState } from "react";
+import InfoIcon from "@mui/icons-material/Info";
 
 interface Position {
   x: number;
@@ -54,31 +64,48 @@ const Settings: React.FC<SettingsProps> = ({
       <Typography variant="body2" textAlign="left">
         {formatCommands(commands) || "There is no command"}
       </Typography>
-      <TextField
-        fullWidth
-        size="small"
-        type="search"
-        label="Commands to Reach Sample"
-        variant="outlined"
-        focused={isFocused}
-        id="outlined-basic"
-        error={!!errors.commands}
-        placeholder="Commands (L, R, U, D)"
-        {...register("commands", {
-          required: "Commands are required",
-          pattern: {
-            value: /^[LRUD]*$/i,
-            message: "Only L, R, U, D letters are allowed",
-          },
-        })}
-        onChange={e => {
-          const newValue = e.target.value.toUpperCase();
-          setValue("commands", newValue);
-          setCommands(newValue);
-          trigger("commands");
-        }}
-        helperText={errors.commands?.message as string}
-      />
+      <Stack
+        direction="row"
+        spacing={1}
+        my={3}
+        sx={{
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
+        <Tooltip
+          title={
+            <List>
+              <ListItemText>RRDDD</ListItemText>
+            </List>
+          }>
+          <InfoIcon />
+        </Tooltip>
+        <TextField
+          fullWidth
+          size="small"
+          type="search"
+          label="Commands to Reach Sample"
+          variant="outlined"
+          focused={isFocused}
+          id="outlined-basic"
+          error={!!errors.commands}
+          placeholder="Commands (L, R, U, D)"
+          {...register("commands", {
+            required: "Commands are required",
+            pattern: {
+              value: /^[LRUD]*$/i,
+              message: "Only L, R, U, D letters are allowed",
+            },
+          })}
+          onChange={e => {
+            const newValue = e.target.value.toUpperCase();
+            setValue("commands", newValue);
+            setCommands(newValue);
+            trigger("commands");
+          }}
+          helperText={errors.commands?.message as string}
+        />
+      </Stack>
       <CustomButtonGroup
         setIsFocused={setIsFocused}
         setCommands={setCommands}
@@ -89,31 +116,48 @@ const Settings: React.FC<SettingsProps> = ({
       <Typography variant="body2" textAlign="left" my={1}>
         {formatCommands(targetCommands) || "There is no command"}
       </Typography>
-      <TextField
-        fullWidth
-        size="small"
-        type="search"
-        label="Commands to Move Sample"
-        variant="outlined"
-        id="target-commands"
-        focused={isFocused2}
-        error={!!errors.targetCommands}
-        placeholder="Target Commands (L, R, U, D)"
-        {...register("targetCommands", {
-          required: "Target commands are required",
-          pattern: {
-            value: /^[LRUD]*$/i,
-            message: "Only L, R, U, D letters are allowed",
-          },
-        })}
-        onChange={e => {
-          const newValue = e.target.value.toUpperCase();
-          setValue("targetCommands", newValue);
-          setTargetCommands(newValue);
-          trigger("targetCommands");
-        }}
-        helperText={errors.targetCommands?.message as string}
-      />
+      <Stack
+        direction="row"
+        spacing={1}
+        my={3}
+        sx={{
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
+        <Tooltip
+          title={
+            <List>
+              <ListItemText>RRRUU</ListItemText>
+            </List>
+          }>
+          <InfoIcon />
+        </Tooltip>
+        <TextField
+          fullWidth
+          size="small"
+          type="search"
+          label="Commands to Move Sample"
+          variant="outlined"
+          id="target-commands"
+          focused={isFocused2}
+          error={!!errors.targetCommands}
+          placeholder="Target Commands (L, R, U, D)"
+          {...register("targetCommands", {
+            required: "Target commands are required",
+            pattern: {
+              value: /^[LRUD]*$/i,
+              message: "Only L, R, U, D letters are allowed",
+            },
+          })}
+          onChange={e => {
+            const newValue = e.target.value.toUpperCase();
+            setValue("targetCommands", newValue);
+            setTargetCommands(newValue);
+            trigger("targetCommands");
+          }}
+          helperText={errors.targetCommands?.message as string}
+        />
+      </Stack>
       <CustomButtonGroup
         setIsFocused={setIsFocused2}
         setCommands={setTargetCommands}
@@ -121,32 +165,49 @@ const Settings: React.FC<SettingsProps> = ({
         setValue={setValue}
         commandType="targetCommands"
       />
-      <TextField
-        fullWidth
-        size="small"
-        type="text"
-        label="Sample Position (x,y)"
-        variant="outlined"
-        id="sample-position"
-        error={!!errors.samplePosition}
-        placeholder="Example: 2,3"
-        {...register("samplePosition", {
-          required: "Sample position is required",
-          pattern: {
-            value: /^\d+,\d+$/,
-            message: "Please enter valid coordinates in x, y format",
-          },
-        })}
-        onChange={e => {
-          const newValue = e.target.value;
-          const [x, y] = newValue.split(",").map(Number);
-          if (!isNaN(x) && !isNaN(y)) {
-            setSamplePosition({ x, y });
-          }
-          trigger("samplePosition");
-        }}
-        helperText={errors.samplePosition?.message as string}
-      />
+      <Stack
+        direction="row"
+        spacing={1}
+        my={3}
+        sx={{
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
+        <Tooltip
+          title={
+            <List>
+              <ListItemText>2,3</ListItemText>
+            </List>
+          }>
+          <InfoIcon />
+        </Tooltip>
+        <TextField
+          fullWidth
+          size="small"
+          type="text"
+          label="Sample Position (x,y)"
+          variant="outlined"
+          id="sample-position"
+          error={!!errors.samplePosition}
+          placeholder="Example: 2,3"
+          {...register("samplePosition", {
+            required: "Sample position is required",
+            pattern: {
+              value: /^\d+,\d+$/,
+              message: "Please enter valid coordinates in x, y format",
+            },
+          })}
+          onChange={e => {
+            const newValue = e.target.value;
+            const [x, y] = newValue.split(",").map(Number);
+            if (!isNaN(x) && !isNaN(y)) {
+              setSamplePosition({ x, y });
+            }
+            trigger("samplePosition");
+          }}
+          helperText={errors.samplePosition?.message as string}
+        />
+      </Stack>
       <Slider
         marks
         min={100}

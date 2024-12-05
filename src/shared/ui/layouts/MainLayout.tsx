@@ -77,11 +77,14 @@ export default function MainLayout() {
             { name: "Logout", link: "signin", icon: <LogoutIcon /> },
           ].map(({ name, link, icon }) => (
             <ListItem key={name} disablePadding sx={{ display: "block" }}>
-              <NavLink to={link} style={{ textDecoration: "none" }} onClick={() => {
-                if (name === "Logout") {
-                  removeItem("session");
-                }
-              }}>
+              <NavLink
+                to={link}
+                style={{ textDecoration: "none" }}
+                onClick={() => {
+                  if (name === "Logout") {
+                    removeItem("session");
+                  }
+                }}>
                 {({ isActive }) => (
                   <ListItemButton
                     sx={[
