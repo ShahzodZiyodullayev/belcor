@@ -45,6 +45,7 @@ const Visualizer: React.FC = () => {
     [data],
   );
 
+  //
   useEffect(() => {
     if (commands && isStart) {
       const executeCommands = async () => {
